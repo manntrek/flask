@@ -51,6 +51,18 @@ def add_card():
     else:
         return render_template("add_card.html") #in else case, the use wants to retrive the template in order to fill data
 
+@app.route('/remove_card/<int:index>', methods=["GET", "POST"])
+def remove_card(index):
+    try:
+        if request.method == "POST":
+            del db[index]
+            save_db()
+            return redirect(url_for('welcome'))
+        else:
+            return render_template("remove_card.html", card=db[index]) 
+    except IndexError:
+        abort(404)
+
 @app.route("/card/<int:index>")
 def card_view (index):
     try:
