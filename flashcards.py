@@ -30,7 +30,7 @@ def add_card():
         "answer" : request.form['answer']}
         db.append(card)
         save_db()
-        #insert in DB as well
+        """ #insert in DB as well
         
         question = request.form['question']
         answer = request.form['answer']
@@ -45,7 +45,7 @@ def add_card():
             dbs.commit()
         except IndexError:
             print("dbs insert failed")
-
+ """
         
         return redirect(url_for('card_view', index=len(db)-1    ))
     else:
