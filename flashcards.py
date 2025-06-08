@@ -21,8 +21,6 @@ print(f"Using Database: {app.config.get('DATABASE')}")
 def welcome ():
     return render_template("welcome.html",
             cards=db)
-if __name__ == '__main__':
-    app.run(host='0.0.0.0',port=int(os.environ.get('PORT',8080)))
 
 @app.route('/add_card', methods=["GET", "POST"])
 def add_card():
@@ -97,4 +95,5 @@ def api_card_detail (index):
     except IndexError:
         abort(404)
 
-
+if __name__ == "__main__":
+    app.run(debug=False, host="0.0.0.0",port=int(os.environ.get("PORT",8080)))
